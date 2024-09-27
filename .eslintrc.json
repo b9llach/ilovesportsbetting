@@ -1,0 +1,8 @@
+{
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "rules": {
+    // ... other rules
+    "@typescript-eslint/no-explicit-any": "warn", // or 'off' if you want to completely disable it
+    "@typescript-eslint/no-empty-object-type": "warn" // or 'off'
+  }
+}
