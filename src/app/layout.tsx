@@ -17,7 +17,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "I <3 SB",
-  description: "Stake on players, win real money. Compete head to head in a variety of your favorite games with a 0% fee!",
+  description: "The best sports betting analytics platform. Get the odds, make the bet, win real money.",
   icons: {
     icon: "/imgs/logo.png",
   },
