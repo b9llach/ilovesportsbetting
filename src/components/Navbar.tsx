@@ -1,30 +1,33 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { FaChartBar, FaArrowCircleUp, FaExchangeAlt, FaLayerGroup, FaClipboardList, FaCalculator, FaBell } from 'react-icons/fa';
 
 const Navbar: React.FC = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const pathname = usePathname();
-
-  const toggleCollapse = () => {
-    setIsCollapsed(!isCollapsed);
-    document.body.style.setProperty('--navbar-width', isCollapsed ? '16rem' : '4rem');
-  };
-
-
-  const navItems = [
-    { icon: FaChartBar, label: 'Dashboard', href: '/dashboard' },
-    { icon: FaArrowCircleUp, label: 'Positive EV', href: '/positive-ev' },
-    { icon: FaExchangeAlt, label: 'Arbitrage Bets', href: '/arbitrage-bets' },
-    { icon: FaLayerGroup, label: 'Parlay Builder', href: '/parlay-builder' },
-    { icon: FaClipboardList, label: 'Bet Tracker', href: '/bet-tracker' },
-    { icon: FaCalculator, label: 'Calculators', href: '/calculators' },
-    { icon: FaBell, label: 'Notices', href: '/notices' },
-  ];
+    const [isCollapsed, setIsCollapsed] = useState(false);
+    const pathname = usePathname();
+  
+    const toggleCollapse = () => {
+      setIsCollapsed(!isCollapsed);
+    };
+  
+    useEffect(() => {
+      document.body.style.paddingLeft = isCollapsed ? '4rem' : '16rem';
+      document.body.style.transition = 'padding-left 300ms ease-in-out';
+    }, [isCollapsed]);
+  
+    const navItems = [
+      { icon: FaChartBar, label: 'Dashboard', href: '/dashboard' },
+      { icon: FaArrowCircleUp, label: 'Positive EV', href: '/positive-ev' },
+      { icon: FaExchangeAlt, label: 'Arbitrage Bets', href: '/arbitrage-bets' },
+      { icon: FaLayerGroup, label: 'Parlay Builder', href: '/parlay-builder' },
+      { icon: FaClipboardList, label: 'Bet Tracker', href: '/bet-tracker' },
+      { icon: FaCalculator, label: 'Calculators', href: '/calculators' },
+      { icon: FaBell, label: 'Notices', href: '/notices' },
+    ];
 
   // Hide navbar on the home page
   if (pathname === '/') {
