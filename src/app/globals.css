@@ -87,3 +87,12 @@
   font-display: swap;
 }
 
+:root {
+  --navbar-width: 16rem;
+}
+
+body {
+  padding-left: var(--navbar-width);
+  transition: padding-left 0.3s ease-in-out;
+}
+

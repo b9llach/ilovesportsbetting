@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -15,10 +16,10 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "StayStaked",
+  title: "I <3 SB",
   description: "Stake on players, win real money. Compete head to head in a variety of your favorite games with a 0% fee!",
   icons: {
-    icon: "https://raw.githubusercontent.com/6mansNA/staystaked/refs/heads/main/staystaked.ico",
+    icon: "/imgs/logo.png",
   },
 };
 
@@ -29,10 +30,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <div className="flex">
+          <Navbar />
+          <main className="flex-1 ml-2transition-all duration-300 ease-in-out">
+            {children}
+          </main>
+        </div>
         <SpeedInsights />
       </body>
     </html>

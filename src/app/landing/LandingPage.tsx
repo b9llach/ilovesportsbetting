@@ -11,13 +11,8 @@ const LandingPage = () => {
   const router = useRouter();
 
   const handleApplyClick = () => {
-    router.push('/apply');
+    router.push('/dashboard');
   };
-
-  const handleJoinDiscord = () => {
-    window.open("https://discord.gg/X5Tb4uUMuc", "_blank"); // Open Discord link in a new tab
-  };
-
 
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
@@ -28,12 +23,12 @@ const LandingPage = () => {
         cx={12}
         cy={12}
         cr={2}
-        dotColor="rgba(255,110,199, .1)"
+        dotColor="rgb(46, 35, 108, .3)"
       />
       <div className="relative z-10 min-h-screen ">
         <div className="absolute top-4 left-4">
           <Image
-            src="/imgs/staystakedlogo.png"
+            src="/imgs/logo.png"
             alt="StayStaked Logo"
             width={100}
             height={100}
@@ -43,31 +38,24 @@ const LandingPage = () => {
         <div className="flex flex-col items-center justify-center min-h-screen text-center px-4 space-y-8">
           <div>
             <LetterPullup 
-              words="STAKE ON PLAYERS" 
+              words="GET THE ODDS" 
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold"
             />
             <LetterPullup 
-              words="WIN REAL MONEY" 
+              words="MAKE THE BET" 
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold"
               delay={0.1}
             />
             <LetterPullup 
-              words="STAY STAKED." 
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-[#ff6ec7]"
-              delay={0.2}
+              words="WIN REAL MONEY." 
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-[#433D8B]"
+              delay={0.14}
             />
           </div>
           <div className="flex space-x-8">
-          <ShinyButton 
-                text="Join our Discord Today!" 
-                className="w-48 sm:w-56 md:w-64 text-black bg-[#ff6ec7] hover:bg-[#ff8ed3]"
-                onClick={handleJoinDiscord}
-              >
-                <FaDiscord className="mr-2 inline-block" />
-              </ShinyButton>
             <ShinyButton 
-              text="Apply for Partner Now!" 
-              className="w-48 sm:w-56 md:w-64 text-black bg-[#ff6ec7] hover:bg-[#ff8ed3]"
+              text="Explore Now!" 
+              className="w-48 sm:w-56 md:w-64 text-white bg-[#433D8B] hover:bg-[#2E236C]"
               onClick={handleApplyClick}
             >
               <FaHandshake className="mr-2 inline-block" />
