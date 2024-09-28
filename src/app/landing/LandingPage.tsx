@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import ShinyButton from "@/components/magicui/shiny-button";
 import LetterPullup from "@/components/magicui/letter-pullup";
-import DotPattern from "@/components/magicui/dot-pattern";
 import { FaHandshake } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 
@@ -16,15 +15,6 @@ const LandingPage = () => {
 
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
-      <DotPattern 
-        className="absolute inset-0 h-full w-full pointer-events-none"
-        width={24}
-        height={24}
-        cx={12}
-        cy={12}
-        cr={2}
-        dotColor="rgb(46, 35, 108, .3)"
-      />
       <div className="relative z-10 min-h-screen ">
         <div className="absolute top-4 left-4">
           <Image
