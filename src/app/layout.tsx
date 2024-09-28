@@ -31,12 +31,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <div className="flex">
-          <Navbar />
-          <main className="flex-1 ml-2transition-all duration-300 ease-in-out">
-            {children}
-          </main>
-        </div>
+        <Navbar />
+        <main className="transition-all duration-300 ease-in-out">
+          {children}
+        </main>
         <SpeedInsights />
       </body>
     </html>
