@@ -4,7 +4,7 @@ import Image from 'next/image';
 import ShinyButton from "@/components/magicui/shiny-button";
 import LetterPullup from "@/components/magicui/letter-pullup";
 import DotPattern from "@/components/magicui/dot-pattern";
-import { FaHandshake, FaDiscord } from 'react-icons/fa';
+import { FaHandshake } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 
 const LandingPage = () => {
