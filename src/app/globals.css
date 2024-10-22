@@ -69,6 +69,38 @@
   backdrop-filter: blur(4px);
 }
 
+.custom-calendar {
+  background-color: #2D2D2D;
+  color: #FFFFFF;
+}
+
+.custom-calendar .rbc-header {
+  background-color: #3D3D3D;
+  color: #FFFFFF;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.custom-calendar .rbc-month-view {
+  border: none;
+}
+
+.custom-calendar .rbc-day-bg {
+  background-color: #2D2D2D;
+}
+
+.custom-calendar .rbc-off-range-bg {
+  background-color: #252525;
+}
+
+.custom-calendar .rbc-today {
+  background-color: #3D3D3D;
+}
+
+.custom-calendar .rbc-button-link {
+  color: #FFFFFF;
+}
+
 @layer base {
   * {
     @apply border-border;

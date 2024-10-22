@@ -149,17 +149,17 @@ const ParlayBuilder = () => {
                   </SelectContent>
                 </Select>
               </div>
-              <ScrollArea className="h-[400px]">
-                <div className="space-y-4">
+              <ScrollArea className="h-[600px]">
+                <div className="grid grid-cols-2 gap-4">
                   {selectedSportsbook.availableBets.map(bet => (
                     <Card key={bet.id} className="bg-[#2D2D2D] border-none text-white hover:bg-[#3D3D3D] transition-colors duration-200">
-                      <CardContent className="p-4 flex justify-between items-center">
+                      <CardContent className="p-3 flex flex-col justify-between h-full">
                         <div>
-                          <p className="font-semibold">{bet.event}</p>
-                          <p className="text-sm text-gray-400">{bet.bet}</p>
+                          <p className="font-semibold text-sm">{bet.event}</p>
+                          <p className="text-xs text-gray-400">{bet.bet}</p>
                         </div>
-                        <div className="flex items-center space-x-2">
-                          <span className="font-semibold">{bet.odds}</span>
+                        <div className="flex items-center justify-between mt-2">
+                          <span className="font-semibold text-sm">{bet.odds}</span>
                           <Button
                             onClick={() => addBet(bet)}
                             variant="ghost"
@@ -177,7 +177,7 @@ const ParlayBuilder = () => {
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-4">Your Parlay</h3>
-              <ScrollArea className="h-[300px]">
+              <ScrollArea className="h-[500px]">
                 <div className="space-y-4">
                   {selectedBets.map(bet => (
                     <Card key={bet.id} className="bg-[#2D2D2D] border-none text-white">

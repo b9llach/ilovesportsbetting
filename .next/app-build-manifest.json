@@ -16,16 +16,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/dashboard/page.js"
     ],
-    "/positive-ev/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/positive-ev/page.js"
-    ],
-    "/arbitrage-bets/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/arbitrage-bets/page.js"
-    ],
     "/parlay-builder/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
