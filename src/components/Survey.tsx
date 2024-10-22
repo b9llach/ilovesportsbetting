@@ -36,7 +36,7 @@ const Survey = () => {
     name: "",
     "live-bet-ease": 0,
     "bet-accuracy": 0,
-    "withdrawal-satisfaction": 0
+    "withdrawal-satisfaction": 0 
   });
 
   const handleChange = (id: string, value: number | string) => {
@@ -57,7 +57,7 @@ const Survey = () => {
         },
         body: JSON.stringify({
           embeds: [{
-            title: 'User Experience Survey Submission',
+            title: 'Survey Submission',
             color: 0x0099ff,
             fields: Object.entries(surveyData).map(([key, value]) => ({
               name: key,
