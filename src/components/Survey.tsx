@@ -9,19 +9,21 @@ import { Input } from "@/components/ui/input";
 const SurveyQuestion = ({ question, id, value, onChange }: { question: string; id: string; value: number; onChange: (value: number) => void }) => (
   <div className="mb-8">
     <h3 className="text-lg font-semibold mb-3">{question}</h3>
-    <div className="flex justify-between">
+    <div className="flex justify-between" role="group" aria-labelledby={`${id}-label`}>
       {[1, 2, 3, 4, 5].map((num) => (
         <Button
           key={num}
           onClick={(e) => {
-            e.preventDefault(); // Prevent form submission
+            e.preventDefault();
             onChange(num);
           }}
-          type="button" // Explicitly set type to "button"
+          type="button"
           variant={value === num ? "default" : "outline"}
           className={`w-16 h-16 rounded-full text-lg font-bold ${
             value === num ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'
           }`}
+          aria-label={`Rate ${num}`}
+          aria-pressed={value === num}
         >
           {num}
         </Button>
