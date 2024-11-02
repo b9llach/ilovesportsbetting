@@ -71,8 +71,8 @@ const BetTracker = () => {
   };
 
   return (
-    <div className="p-8 bg-gradient-to-r from-black to-[#17153B] text-white min-h-screen">
-      <Card className="bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
+    <div className="flex items-center justify-center min-h-screen p-8 bg-gradient-to-r from-black to-[#17153B] text-white">
+      <Card className="w-full max-w-7xl bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b border-gray-700">
           <div className="flex items-center space-x-2">
             <FaChartLine className="h-8 w-8 text-blue-400" />
@@ -106,7 +106,7 @@ const BetTracker = () => {
                   {day}
                 </div>
               ))}
-              {getDaysInMonth().map((day, index) => (
+              {getDaysInMonth().map((day) => (
                 <Card 
                   key={day.date.getTime()} 
                   className={`bg-[#2D2D2D] border-none text-white hover:bg-[#3D3D3D] transition-colors duration-200 cursor-pointer
