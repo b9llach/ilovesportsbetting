@@ -1,86 +1,164 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { FaChartLine } from "react-icons/fa";
-
-// Setup the localizer for react-big-calendar
-const localizer = momentLocalizer(moment);
+import { FaChartLine, FaEdit } from "react-icons/fa";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 // Fake data for bets
-const bets = [
-  { date: new Date(2023, 5, 1), profit: 50 },
-  { date: new Date(2023, 5, 3), profit: -20 },
-  { date: new Date(2023, 5, 5), profit: 30 },
-  { date: new Date(2023, 5, 10), profit: -15 },
-  { date: new Date(2023, 5, 15), profit: 100 },
+const initialBets = [
+  { date: new Date(2024, 2, 1), profit: 50 },
+  { date: new Date(2024, 2, 3), profit: -20 },
+  { date: new Date(2024, 2, 5), profit: 30 },
+  { date: new Date(2024, 2, 10), profit: -15 },
+  { date: new Date(2024, 2, 15), profit: 100 },
 ];
 
 const BetTracker = () => {
+  const [bets, setBets] = useState(initialBets);
+  const [currentMonth, setCurrentMonth] = useState(moment());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [editMode, setEditMode] = useState(false);
+  const [editValue, setEditValue] = useState("");
 
-  const events = bets.map(bet => ({
-    start: bet.date,
-    end: bet.date,
-    title: `$${bet.profit > 0 ? '+' : ''}${bet.profit}`,
-    profit: bet.profit,
-  }));
+  // Generate all days for the current month
+  const getDaysInMonth = () => {
+    const startOfMonth = moment(currentMonth).startOf('month');
+    const endOfMonth = moment(currentMonth).endOf('month');
+    const days = [];
 
-  const handleSelectEvent = (event: any) => {
-    setSelectedDate(event.start);
+    for (let date = startOfMonth.clone(); date.isSameOrBefore(endOfMonth); date.add(1, 'days')) {
+      const existingBet = bets.find(bet => 
+        moment(bet.date).format('YYYY-MM-DD') === date.format('YYYY-MM-DD')
+      );
+
+      days.push({
+        date: date.toDate(),
+        profit: existingBet?.profit || 0,
+        hasBet: !!existingBet
+      });
+    }
+    return days;
   };
 
-  const eventStyleGetter = (event: any) => {
-    const style = {
-      backgroundColor: event.profit > 0 ? '#4CAF50' : '#F44336',
-      color: 'white',
-      border: 'none',
-      borderRadius: '4px',
-      padding: '2px 5px',
-    };
-    return { style };
+  const handleEditBet = (date: Date) => {
+    setSelectedDate(date);
+    const bet = bets.find(b => 
+      moment(b.date).format('YYYY-MM-DD') === moment(date).format('YYYY-MM-DD')
+    );
+    setEditValue(bet?.profit?.toString() || "0");
+    setEditMode(true);
   };
 
-  const selectedDateProfit = selectedDate
-    ? bets.find(bet => bet.date.getTime() === selectedDate.getTime())?.profit
-    : null;
+  const handleSaveBet = () => {
+    if (selectedDate && editValue) {
+      const existingBetIndex = bets.findIndex(b => 
+        moment(b.date).format('YYYY-MM-DD') === moment(selectedDate).format('YYYY-MM-DD')
+      );
+
+      if (existingBetIndex >= 0) {
+        const newBets = [...bets];
+        newBets[existingBetIndex].profit = parseFloat(editValue);
+        setBets(newBets);
+      } else {
+        setBets([...bets, { date: selectedDate, profit: parseFloat(editValue) }]);
+      }
+      setEditMode(false);
+    }
+  };
 
   return (
-    <div className="w-full p-4">
-      <Card className="bg-[#1E1E1E] border-none text-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
+    <div className="p-8 bg-gradient-to-r from-black to-[#17153B] text-white min-h-screen">
+      <Card className="bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b border-gray-700">
           <div className="flex items-center space-x-2">
             <FaChartLine className="h-8 w-8 text-blue-400" />
             <CardTitle className="text-2xl font-bold">Bet Tracker</CardTitle>
           </div>
+          <div className="flex items-center space-x-2">
+            <Button
+              variant="ghost"
+              onClick={() => setCurrentMonth(moment(currentMonth).subtract(1, 'month'))}
+              className="text-blue-400 hover:text-blue-300"
+            >
+              Previous
+            </Button>
+            <span className="text-lg font-semibold">
+              {currentMonth.format('MMMM YYYY')}
+            </span>
+            <Button
+              variant="ghost"
+              onClick={() => setCurrentMonth(moment(currentMonth).add(1, 'month'))}
+              className="text-blue-400 hover:text-blue-300"
+            >
+              Next
+            </Button>
+          </div>
         </CardHeader>
         <CardContent className="pt-6">
-          <Calendar
-            localizer={localizer}
-            events={events}
-            startAccessor="start"
-            endAccessor="end"
-            style={{ height: 500 }}
-            onSelectEvent={handleSelectEvent}
-            eventPropGetter={eventStyleGetter}
-            formats={{
-              dayFormat: 'D',
-              dayHeaderFormat: (date: Date) => moment(date).format('ddd'),
-            }}
-            views={['month']}
-            className="custom-calendar"
-          />
-          {selectedDate && (
-            <div className="mt-4 text-center">
-              <h3 className="text-lg font-semibold">
-                Selected Date: {moment(selectedDate).format('MMMM D, YYYY')}
+          <ScrollArea className="h-[600px]">
+            <div className="grid grid-cols-7 gap-4">
+              {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
+                <div key={day} className="text-center font-semibold text-gray-400 pb-2">
+                  {day}
+                </div>
+              ))}
+              {getDaysInMonth().map((day, index) => (
+                <Card 
+                  key={day.date.getTime()} 
+                  className={`bg-[#2D2D2D] border-none text-white hover:bg-[#3D3D3D] transition-colors duration-200 cursor-pointer
+                    ${!day.hasBet ? 'opacity-60' : ''}`}
+                  onClick={() => handleEditBet(day.date)}
+                >
+                  <CardContent className="p-3">
+                    <div className="flex justify-between items-center">
+                      <p className="font-semibold">{moment(day.date).format('D')}</p>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        <FaEdit className="h-3 w-3" />
+                      </Button>
+                    </div>
+                    <p className={`text-lg font-bold mt-1 ${
+                      day.profit > 0 
+                        ? 'text-green-400' 
+                        : day.profit < 0 
+                          ? 'text-red-400' 
+                          : 'text-gray-400'
+                    }`}>
+                      ${day.profit > 0 ? '+' : ''}{day.profit}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </ScrollArea>
+
+          {editMode && selectedDate && (
+            <div className="mt-6 bg-[#2D2D2D] p-4 rounded-lg">
+              <h3 className="text-lg font-semibold mb-2">
+                Edit Profit/Loss for {moment(selectedDate).format('MMMM D, YYYY')}
               </h3>
-              <p className="text-xl font-bold">
-                Profit/Loss: ${selectedDateProfit !== null ? selectedDateProfit : 'No bets'}
-              </p>
+              <div className="flex space-x-2">
+                <Input
+                  type="number"
+                  value={editValue}
+                  onChange={(e) => setEditValue(e.target.value)}
+                  className="bg-[#3D3D3D] border-none text-white"
+                  placeholder="Enter profit/loss"
+                />
+                <Button
+                  onClick={handleSaveBet}
+                  className="bg-blue-400 hover:bg-blue-500 text-white"
+                >
+                  Save
+                </Button>
+              </div>
             </div>
           )}
         </CardContent>

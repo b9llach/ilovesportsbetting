@@ -1,3 +1,9 @@
 {
-  "/survey/page": "app/survey/page.js"
+  "/calculators/page": "app/calculators/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/parlay-builder/page": "app/parlay-builder/page.js",
+  "/arbitrage-bets/page": "app/arbitrage-bets/page.js",
+  "/page": "app/page.js",
+  "/positive-ev/page": "app/positive-ev/page.js",
+  "/bet-tracker/page": "app/bet-tracker/page.js"
 }

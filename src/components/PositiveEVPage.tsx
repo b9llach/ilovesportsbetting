@@ -66,8 +66,8 @@ const PositiveEVPanel = () => {
     const bets = fakePositiveEVBets[selectedSportsbook as keyof typeof fakePositiveEVBets];
   
     return (
-      <div className="w-full p-4 rounded-xl">
-        <Card className="bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
+      <div className="flex items-center justify-center min-h-screen p-8 bg-gradient-to-r from-black to-[#17153B] text-white">
+        <Card className="w-full max-w-7xl bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b border-gray-700">
             <div className="flex items-center space-x-2">
               <FaPercentage className="h-8 w-8 text-green-400" />
