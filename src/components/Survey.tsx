@@ -247,23 +247,23 @@ const Survey = () => {
 
       {/* Thank you card */}
       {showThankYou && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
-          <Card className="bg-[#1C1C1C] border-blue-500/20 w-full max-w-md relative">
-            <button 
-              onClick={() => setShowThankYou(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-white"
-            >
-              ✕
-            </button>
-            <CardHeader>
-              <CardTitle className="text-2xl text-white text-center">Thank You!</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-400 text-center">
-                Your feedback will help us improve your experience.
-              </p>
-            </CardContent>
-          </Card>
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
+        <Card className="bg-[#1C1C1C] border-blue-500/20 w-full max-w-md relative">
+          <button 
+            onClick={() => setShowThankYou(false)}
+            className="absolute top-4 right-4 text-gray-400 hover:text-white"
+          >
+            ✕
+          </button>
+          <CardHeader>
+            <CardTitle className="text-2xl text-white text-center">Thank You!</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-400 text-center">
+              Your feedback will help us improve your experience.
+            </p>
+          </CardContent>
+        </Card>
         </div>
       )}
     </div>
