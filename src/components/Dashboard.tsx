@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { FaTrophy, FaChartLine, FaPercent, FaDollarSign, FaHistory, FaUserFriends, FaMedal, FaFire } from 'react-icons/fa';
+import {  FaChartLine, FaPercent, FaDollarSign, FaFire } from 'react-icons/fa';
 import { PageContainer } from "@/components/layout/PageContainer";
 
 const Dashboard = () => {

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import moment from 'moment';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { FaChartLine, FaEdit } from "react-icons/fa";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
