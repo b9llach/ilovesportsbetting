@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FaMoneyBillWave, FaCalendarAlt, FaPercentage } from 'react-icons/fa';
+import { PageContainer } from "@/components/layout/PageContainer";
 
 const sportsbooks = [
   'DraftKings', 'FanDuel', 'BetMGM', 'Caesars', 'PointsBet',
@@ -62,30 +63,30 @@ const fakePositiveEVBets = {
 
 const PositiveEVPanel = () => {
     const [selectedSportsbook, setSelectedSportsbook] = useState(sportsbooks[0]);
-  
     const bets = fakePositiveEVBets[selectedSportsbook as keyof typeof fakePositiveEVBets];
   
     return (
-      <div className="flex items-center justify-center min-h-screen p-8 bg-gradient-to-r from-black to-[#17153B] text-white">
-        <Card className="w-full max-w-7xl bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b border-gray-700">
-            <div className="flex items-center space-x-2">
-              <FaPercentage className="h-8 w-8 text-green-400" />
-              <CardTitle className="text-2xl font-bold">Positive EV Bets</CardTitle>
+      <PageContainer>
+        <Card className="bg-[#1C1C1C] border-none p-6">
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-3xl font-bold flex items-center gap-2 text-white">
+                <FaPercentage className="h-8 w-8 text-green-400" />
+                Positive EV Bets
+              </h2>
+              <Select onValueChange={setSelectedSportsbook} defaultValue={selectedSportsbook}>
+                <SelectTrigger className="w-[180px] bg-[#2D2D2D] text-white border-none focus:ring-2 focus:ring-green-400">
+                  <SelectValue placeholder="Select Sportsbook" />
+                </SelectTrigger>
+                <SelectContent className="bg-[#2D2D2D] text-white border-none">
+                  {sportsbooks.map((book) => (
+                    <SelectItem key={book} value={book} className="hover:bg-[#3D3D3D]">{book}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
-            <Select onValueChange={setSelectedSportsbook} defaultValue={selectedSportsbook}>
-              <SelectTrigger className="w-[180px] bg-[#2D2D2D] text-white border-none focus:ring-2 focus:ring-green-400">
-                <SelectValue placeholder="Select Sportsbook" />
-              </SelectTrigger>
-              <SelectContent className="bg-[#2D2D2D] text-white border-none">
-                {sportsbooks.map((book) => (
-                  <SelectItem key={book} value={book} className="hover:bg-[#3D3D3D]">{book}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </CardHeader>
-          <CardContent className="pt-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-[70%] overflow-y-auto">
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {bets.map((bet, index) => (
                 <Card key={index} className="bg-[#2D2D2D] border-none text-white hover:bg-[#3D3D3D] transition-colors duration-200">
                   <CardHeader className="pb-2">
@@ -121,10 +122,10 @@ const PositiveEVPanel = () => {
                 </Card>
               ))}
             </div>
-          </CardContent>
+          </div>
         </Card>
-      </div>
+      </PageContainer>
     );
-  };
-  
-  export default PositiveEVPanel;
+};
+
+export default PositiveEVPanel;

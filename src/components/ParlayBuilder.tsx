@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { FaCalculator, FaPlus, FaTimes } from 'react-icons/fa';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { PageContainer } from "@/components/layout/PageContainer";
 
 // Expanded fake data structure
 const sportsbooks = [
@@ -123,32 +124,33 @@ const ParlayBuilder = () => {
   };
 
   return (
-    <div className="w-full p-4 rounded-xl p-8 bg-gradient-to-r from-black to-[#17153B] text-white min-h-screen">
-      <Card className="bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 border-b border-gray-700">
-          <div className="flex items-center space-x-2">
-            <FaCalculator className="h-8 w-8 text-blue-400" />
-            <CardTitle className="text-2xl font-bold">Parlay Builder</CardTitle>
+    <PageContainer>
+      <Card className="bg-[#1D1D1D] border-none p-6">
+        <div className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-3xl font-bold flex items-center gap-2 text-white">
+              <FaCalculator className="h-8 w-8 text-white" />
+              Parlay Builder
+            </h2>
+            <Select
+              onValueChange={(value) => setSelectedSportsbook(sportsbooks.find(sb => sb.id.toString() === value)!)}
+            >
+              <SelectTrigger className="w-[180px] bg-[#2D2D2D] text-white border-none focus:ring-2 focus:ring-blue-400">
+                <SelectValue placeholder="Select Sportsbook" />
+              </SelectTrigger>
+              <SelectContent className="bg-[#2D2D2D] text-white border-none">
+                {sportsbooks.map(sb => (
+                  <SelectItem key={sb.id} value={sb.id.toString()} className="hover:bg-[#3D3D3D]">
+                    {sb.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
-        </CardHeader>
-        <CardContent className="pt-6">
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-semibold">Available Bets</h3>
-                <Select
-                  onValueChange={(value) => setSelectedSportsbook(sportsbooks.find(sb => sb.id.toString() === value)!)}
-                >
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Select Sportsbook" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {sportsbooks.map(sb => (
-                      <SelectItem key={sb.id} value={sb.id.toString()}>{sb.name}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+              <h3 className="text-lg font-semibold mb-4 text-white">Available Bets</h3>
               <ScrollArea className="h-[600px]">
                 <div className="grid grid-cols-2 gap-4">
                   {selectedSportsbook.availableBets.map(bet => (
@@ -164,7 +166,7 @@ const ParlayBuilder = () => {
                             onClick={() => addBet(bet)}
                             variant="ghost"
                             size="sm"
-                            className="text-blue-400 hover:text-blue-300"
+                            className="text-white hover:text-white"
                           >
                             <FaPlus />
                           </Button>
@@ -175,8 +177,9 @@ const ParlayBuilder = () => {
                 </div>
               </ScrollArea>
             </div>
+
             <div>
-              <h3 className="text-lg font-semibold mb-4">Your Parlay</h3>
+              <h3 className="text-lg font-semibold mb-4 text-white">Your Parlay</h3>
               <ScrollArea className="h-[500px]">
                 <div className="space-y-4">
                   {selectedBets.map(bet => (
@@ -203,16 +206,16 @@ const ParlayBuilder = () => {
                 </div>
               </ScrollArea>
               <div className="mt-6 bg-[#2D2D2D] p-4 rounded-lg">
-                <p className="text-lg font-semibold">Total Odds:</p>
-                <p className="text-3xl font-bold text-blue-400">
+                <p className="text-lg font-semibold text-white">Total Odds:</p>
+                <p className="text-3xl font-bold text-white">
                   {selectedBets.length > 0 ? formatOdds(calculateTotalOdds()) : 'N/A'}
                 </p>
               </div>
             </div>
           </div>
-        </CardContent>
+        </div>
       </Card>
-    </div>
+    </PageContainer>
   );
 };
 

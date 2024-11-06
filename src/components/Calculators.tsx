@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FaCalculator } from "react-icons/fa";
+import { PageContainer } from "@/components/layout/PageContainer";
 
 const Calculators = () => {
   // Odds Calculator
@@ -97,215 +98,224 @@ const Calculators = () => {
   };
 
   return (
-    <div className="p-8 bg-gradient-to-r from-black to-[#17153B] text-white min-h-screen">
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {/* Odds Calculator */}
-        <Card className="bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
-          <CardHeader className="flex flex-row items-center space-y-0 pb-2 border-b border-gray-700">
-            <FaCalculator className="h-6 w-6 text-blue-400 mr-2" />
-            <CardTitle>Odds Calculator</CardTitle>
-          </CardHeader>
-          <CardContent className="pt-4 space-y-3">
-            <Input
-              type="number"
-              placeholder="Stake"
-              value={stake}
-              onChange={(e) => setStake(e.target.value)}
-              className="bg-[#2D2D2D] border-none text-white"
-            />
-            <Input
-              type="number"
-              placeholder="American Odds (e.g. +150 or -110)"
-              value={odds}
-              onChange={(e) => setOdds(e.target.value)}
-              className="bg-[#2D2D2D] border-none text-white"
-            />
-            <Button
-              onClick={calculatePotentialWin}
-              className="w-full bg-blue-400 hover:bg-blue-500"
-            >
-              Calculate
-            </Button>
-            {potentialWin !== null && (
-              <div className="text-center pt-2">
-                <p className="text-lg font-bold text-green-400">
-                  Potential Win: ${potentialWin.toFixed(2)}
-                </p>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+    <PageContainer>
+      <Card className="bg-[#1C1C1C] border-none p-6">
+        <div className="space-y-6">
+          <h2 className="text-3xl font-bold flex items-center gap-2 text-white">
+            <FaCalculator className="h-8 w-8 text-blue-400" />
+            Sports Betting Calculators
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Odds Calculator */}
+            <Card className="bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardHeader className="flex flex-row items-center space-y-0 pb-2 border-b border-gray-700">
+                <FaCalculator className="h-6 w-6 text-blue-400 mr-2" />
+                <CardTitle>Odds Calculator</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-4 space-y-3">
+                <Input
+                  type="number"
+                  placeholder="Stake"
+                  value={stake}
+                  onChange={(e) => setStake(e.target.value)}
+                  className="bg-[#2D2D2D] border-none text-white"
+                />
+                <Input
+                  type="number"
+                  placeholder="American Odds (e.g. +150 or -110)"
+                  value={odds}
+                  onChange={(e) => setOdds(e.target.value)}
+                  className="bg-[#2D2D2D] border-none text-white"
+                />
+                <Button
+                  onClick={calculatePotentialWin}
+                  className="w-full bg-blue-400 hover:bg-blue-500"
+                >
+                  Calculate
+                </Button>
+                {potentialWin !== null && (
+                  <div className="text-center pt-2">
+                    <p className="text-lg font-bold text-green-400">
+                      Potential Win: ${potentialWin.toFixed(2)}
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
 
-        {/* Hedge Calculator */}
-        <Card className="bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
-          <CardHeader className="flex flex-row items-center space-y-0 pb-2 border-b border-gray-700">
-            <FaCalculator className="h-6 w-6 text-blue-400 mr-2" />
-            <CardTitle>Hedge Calculator</CardTitle>
-          </CardHeader>
-          <CardContent className="pt-4 space-y-3">
-            <Input
-              type="number"
-              placeholder="Original Stake"
-              value={originalStake}
-              onChange={(e) => setOriginalStake(e.target.value)}
-              className="bg-[#2D2D2D] border-none text-white"
-            />
-            <Input
-              type="number"
-              placeholder="Original Odds"
-              value={originalOdds}
-              onChange={(e) => setOriginalOdds(e.target.value)}
-              className="bg-[#2D2D2D] border-none text-white"
-            />
-            <Input
-              type="number"
-              placeholder="Hedge Odds"
-              value={hedgeOdds}
-              onChange={(e) => setHedgeOdds(e.target.value)}
-              className="bg-[#2D2D2D] border-none text-white"
-            />
-            <Button
-              onClick={calculateHedge}
-              className="w-full bg-blue-400 hover:bg-blue-500"
-            >
-              Calculate
-            </Button>
-            {hedgeAmount !== null && (
-              <div className="text-center pt-2">
-                <p className="text-lg font-bold text-green-400">
-                  Hedge Amount: ${hedgeAmount.toFixed(2)}
-                </p>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+            {/* Hedge Calculator */}
+            <Card className="bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardHeader className="flex flex-row items-center space-y-0 pb-2 border-b border-gray-700">
+                <FaCalculator className="h-6 w-6 text-blue-400 mr-2" />
+                <CardTitle>Hedge Calculator</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-4 space-y-3">
+                <Input
+                  type="number"
+                  placeholder="Original Stake"
+                  value={originalStake}
+                  onChange={(e) => setOriginalStake(e.target.value)}
+                  className="bg-[#2D2D2D] border-none text-white"
+                />
+                <Input
+                  type="number"
+                  placeholder="Original Odds"
+                  value={originalOdds}
+                  onChange={(e) => setOriginalOdds(e.target.value)}
+                  className="bg-[#2D2D2D] border-none text-white"
+                />
+                <Input
+                  type="number"
+                  placeholder="Hedge Odds"
+                  value={hedgeOdds}
+                  onChange={(e) => setHedgeOdds(e.target.value)}
+                  className="bg-[#2D2D2D] border-none text-white"
+                />
+                <Button
+                  onClick={calculateHedge}
+                  className="w-full bg-blue-400 hover:bg-blue-500"
+                >
+                  Calculate
+                </Button>
+                {hedgeAmount !== null && (
+                  <div className="text-center pt-2">
+                    <p className="text-lg font-bold text-green-400">
+                      Hedge Amount: ${hedgeAmount.toFixed(2)}
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
 
-        {/* Hold Calculator */}
-        <Card className="bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
-          <CardHeader className="flex flex-row items-center space-y-0 pb-2 border-b border-gray-700">
-            <FaCalculator className="h-6 w-6 text-blue-400 mr-2" />
-            <CardTitle>Hold Calculator</CardTitle>
-          </CardHeader>
-          <CardContent className="pt-4 space-y-3">
-            <Input
-              type="number"
-              placeholder="Home Odds"
-              value={homeOdds}
-              onChange={(e) => setHomeOdds(e.target.value)}
-              className="bg-[#2D2D2D] border-none text-white"
-            />
-            <Input
-              type="number"
-              placeholder="Away Odds"
-              value={awayOdds}
-              onChange={(e) => setAwayOdds(e.target.value)}
-              className="bg-[#2D2D2D] border-none text-white"
-            />
-            <Button
-              onClick={calculateHold}
-              className="w-full bg-blue-400 hover:bg-blue-500"
-            >
-              Calculate
-            </Button>
-            {bookmakerHold !== null && (
-              <div className="text-center pt-2">
-                <p className="text-lg font-bold text-green-400">
-                  Bookmaker Hold: {bookmakerHold.toFixed(2)}%
-                </p>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+            {/* Hold Calculator */}
+            <Card className="bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardHeader className="flex flex-row items-center space-y-0 pb-2 border-b border-gray-700">
+                <FaCalculator className="h-6 w-6 text-blue-400 mr-2" />
+                <CardTitle>Hold Calculator</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-4 space-y-3">
+                <Input
+                  type="number"
+                  placeholder="Home Odds"
+                  value={homeOdds}
+                  onChange={(e) => setHomeOdds(e.target.value)}
+                  className="bg-[#2D2D2D] border-none text-white"
+                />
+                <Input
+                  type="number"
+                  placeholder="Away Odds"
+                  value={awayOdds}
+                  onChange={(e) => setAwayOdds(e.target.value)}
+                  className="bg-[#2D2D2D] border-none text-white"
+                />
+                <Button
+                  onClick={calculateHold}
+                  className="w-full bg-blue-400 hover:bg-blue-500"
+                >
+                  Calculate
+                </Button>
+                {bookmakerHold !== null && (
+                  <div className="text-center pt-2">
+                    <p className="text-lg font-bold text-green-400">
+                      Bookmaker Hold: {bookmakerHold.toFixed(2)}%
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
 
-        {/* Parlay Calculator */}
-        <Card className="bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
-          <CardHeader className="flex flex-row items-center space-y-0 pb-2 border-b border-gray-700">
-            <FaCalculator className="h-6 w-6 text-blue-400 mr-2" />
-            <CardTitle>Parlay Calculator</CardTitle>
-          </CardHeader>
-          <CardContent className="pt-4 space-y-3">
-            <Input
-              type="number"
-              placeholder="Parlay Odds 1"
-              value={parlayOdds1}
-              onChange={(e) => setParlayOdds1(e.target.value)}
-              className="bg-[#2D2D2D] border-none text-white"
-            />
-            <Input
-              type="number"
-              placeholder="Parlay Odds 2"
-              value={parlayOdds2}
-              onChange={(e) => setParlayOdds2(e.target.value)}
-              className="bg-[#2D2D2D] border-none text-white"
-            />
-            <Input
-              type="number"
-              placeholder="Parlay Stake"
-              value={parlayStake}
-              onChange={(e) => setParlayStake(e.target.value)}
-              className="bg-[#2D2D2D] border-none text-white"
-            />
-            <Button
-              onClick={calculateParlay}
-              className="w-full bg-blue-400 hover:bg-blue-500"
-            >
-              Calculate
-            </Button>
-            {parlayPayout !== null && (
-              <div className="text-center pt-2">
-                <p className="text-lg font-bold text-green-400">
-                  Parlay Payout: ${parlayPayout.toFixed(2)}
-                </p>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+            {/* Parlay Calculator */}
+            <Card className="bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardHeader className="flex flex-row items-center space-y-0 pb-2 border-b border-gray-700">
+                <FaCalculator className="h-6 w-6 text-blue-400 mr-2" />
+                <CardTitle>Parlay Calculator</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-4 space-y-3">
+                <Input
+                  type="number"
+                  placeholder="Parlay Odds 1"
+                  value={parlayOdds1}
+                  onChange={(e) => setParlayOdds1(e.target.value)}
+                  className="bg-[#2D2D2D] border-none text-white"
+                />
+                <Input
+                  type="number"
+                  placeholder="Parlay Odds 2"
+                  value={parlayOdds2}
+                  onChange={(e) => setParlayOdds2(e.target.value)}
+                  className="bg-[#2D2D2D] border-none text-white"
+                />
+                <Input
+                  type="number"
+                  placeholder="Parlay Stake"
+                  value={parlayStake}
+                  onChange={(e) => setParlayStake(e.target.value)}
+                  className="bg-[#2D2D2D] border-none text-white"
+                />
+                <Button
+                  onClick={calculateParlay}
+                  className="w-full bg-blue-400 hover:bg-blue-500"
+                >
+                  Calculate
+                </Button>
+                {parlayPayout !== null && (
+                  <div className="text-center pt-2">
+                    <p className="text-lg font-bold text-green-400">
+                      Parlay Payout: ${parlayPayout.toFixed(2)}
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
 
-        {/* Kelly Calculator */}
-        <Card className="bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
-          <CardHeader className="flex flex-row items-center space-y-0 pb-2 border-b border-gray-700">
-            <FaCalculator className="h-6 w-6 text-blue-400 mr-2" />
-            <CardTitle>Kelly Calculator</CardTitle>
-          </CardHeader>
-          <CardContent className="pt-4 space-y-3">
-            <Input
-              type="number"
-              placeholder="Probability"
-              value={probability}
-              onChange={(e) => setProbability(e.target.value)}
-              className="bg-[#2D2D2D] border-none text-white"
-            />
-            <Input
-              type="number"
-              placeholder="Kelly Odds"
-              value={kellyOdds}
-              onChange={(e) => setKellyOdds(e.target.value)}
-              className="bg-[#2D2D2D] border-none text-white"
-            />
-            <Input
-              type="number"
-              placeholder="Bankroll"
-              value={bankroll}
-              onChange={(e) => setBankroll(e.target.value)}
-              className="bg-[#2D2D2D] border-none text-white"
-            />
-            <Button
-              onClick={calculateKelly}
-              className="w-full bg-blue-400 hover:bg-blue-500"
-            >
-              Calculate
-            </Button>
-            {kellyStake !== null && (
-              <div className="text-center pt-2">
-                <p className="text-lg font-bold text-green-400">
-                  Kelly Stake: ${kellyStake.toFixed(2)}
-                </p>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+            {/* Kelly Calculator */}
+            <Card className="bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardHeader className="flex flex-row items-center space-y-0 pb-2 border-b border-gray-700">
+                <FaCalculator className="h-6 w-6 text-blue-400 mr-2" />
+                <CardTitle>Kelly Calculator</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-4 space-y-3">
+                <Input
+                  type="number"
+                  placeholder="Probability"
+                  value={probability}
+                  onChange={(e) => setProbability(e.target.value)}
+                  className="bg-[#2D2D2D] border-none text-white"
+                />
+                <Input
+                  type="number"
+                  placeholder="Kelly Odds"
+                  value={kellyOdds}
+                  onChange={(e) => setKellyOdds(e.target.value)}
+                  className="bg-[#2D2D2D] border-none text-white"
+                />
+                <Input
+                  type="number"
+                  placeholder="Bankroll"
+                  value={bankroll}
+                  onChange={(e) => setBankroll(e.target.value)}
+                  className="bg-[#2D2D2D] border-none text-white"
+                />
+                <Button
+                  onClick={calculateKelly}
+                  className="w-full bg-blue-400 hover:bg-blue-500"
+                >
+                  Calculate
+                </Button>
+                {kellyStake !== null && (
+                  <div className="text-center pt-2">
+                    <p className="text-lg font-bold text-green-400">
+                      Kelly Stake: ${kellyStake.toFixed(2)}
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </Card>
+    </PageContainer>
   );
 };
 

@@ -108,7 +108,7 @@ export default function ApplicationForm() {
           />
         </div>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 bg-black bg-opacity-80 p-8 rounded-lg shadow-lg">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 bg-[#191919] border-none text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-6">
                 <h3 className="text-lg font-semibold text-white">Personal Information</h3>

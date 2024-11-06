@@ -1,171 +1,189 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { FaTrophy, FaChartLine, FaPercent, FaDollarSign, FaHistory, FaUserFriends, FaMedal } from 'react-icons/fa';
+import { FaTrophy, FaChartLine, FaPercent, FaDollarSign, FaHistory, FaUserFriends, FaMedal, FaFire } from 'react-icons/fa';
+import { PageContainer } from "@/components/layout/PageContainer";
 
 const Dashboard = () => {
   return (
-    <div className="p-8 bg-gradient-to-r from-black to-[#17153B] text-white min-h-screen flex items-center justify-center">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl w-full">
-        {/* Last 5 Bets */}
-        <Card className="bg-[#191919] border-none text-white h-64 w-64 flex flex-col items-center justify-center rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <CardHeader className="text-center">
-            <CardTitle className="text-xl font-semibold">Last 5 Bets</CardTitle>
-          </CardHeader>
-          <CardContent className="flex justify-center space-x-2">
-            {['W', 'L', 'W', 'W', 'L'].map((result, index) => (
-              <div key={index} className={`w-10 h-10 rounded-full flex items-center justify-center ${result === 'W' ? 'bg-green-500' : 'bg-red-500'} text-lg font-bold`}>
-                {result}
+    <PageContainer>
+      <Card className="bg-[#1C1C1C] border-none p-6">
+        <div className="space-y-6">
+          {/* Header with Welcome Message */}
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-bold text-white">Welcome back, user!</h2>
+              <p className="text-gray-400">Your betting performance is looking strong!</p>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="text-right">
+                <p className="text-sm text-gray-400">user</p>
               </div>
-            ))}
-          </CardContent>
-        </Card>
-
-        {/* Total Profit */}
-        <Card className="bg-[#191919] border-none text-white h-64 w-64 flex flex-col items-center justify-center rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <CardHeader className="flex flex-col items-center justify-center space-y-0 pb-2">
-            <CardTitle className="text-xl font-semibold">Total Profit</CardTitle>
-            <FaDollarSign className="h-6 w-6 text-green-400 mt-2" />
-          </CardHeader>
-          <CardContent className="text-center">
-            <div className="text-5xl font-bold text-green-400">$2,000</div>
-            <p className="text-sm text-gray-400 mt-2">+15% from last month</p>
-          </CardContent>
-        </Card>
-
-        {/* Win Rate */}
-        <Card className="bg-[#191919] border-none text-white h-64 w-64 flex flex-col items-center justify-center rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <CardHeader className="flex flex-col items-center justify-center space-y-0 pb-2">
-            <CardTitle className="text-xl font-semibold">Win Rate</CardTitle>
-            <FaPercent className="h-6 w-6 text-yellow-400 mt-2" />
-          </CardHeader>
-          <CardContent className="text-center">
-            <div className="text-5xl font-bold text-yellow-400">62</div>
-            <p className="text-sm text-gray-400 mt-2">Last 100 bets</p>
-          </CardContent>
-        </Card>
-
-        {/* Active Bets */}
-        <Card className="bg-[#191919] border-none text-white h-64 w-64 flex flex-col items-center justify-center rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <CardHeader className="flex flex-col items-center justify-center space-y-0 pb-2">
-            <CardTitle className="text-xl font-semibold">Active Bets</CardTitle>
-            <FaChartLine className="h-6 w-6 text-blue-400 mt-2" />
-          </CardHeader>
-          <CardContent className="text-center">
-            <div className="text-5xl font-bold text-blue-400">7</div>
-            <p className="text-sm text-gray-400 mt-2">3 pending results</p>
-          </CardContent>
-        </Card>
-
-        {/* Profit Chart Placeholder */}
-        <Card className="bg-[#191919] border-none text-white h-64 w-64 flex flex-col items-center justify-center rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <CardHeader className="text-center">
-            <CardTitle className="text-xl font-semibold">Profit Trend</CardTitle>
-          </CardHeader>
-          <CardContent className="h-[200px] flex items-center justify-center">
-            <p className="text-gray-400">Chart placeholder</p>
-          </CardContent>
-        </Card>
-
-        {/* Leaderboard */}
-        <Card className="bg-[#191919] border-none text-white h-64 w-64 flex flex-col items-center justify-center rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <CardHeader className="flex flex-col items-center justify-center space-y-0 pb-2">
-            <CardTitle className="text-xl font-semibold">Top Bettors</CardTitle>
-            <FaTrophy className="h-6 w-6 text-yellow-400 mt-2" />
-          </CardHeader>
-          <CardContent className="w-full">
-            <div className="space-y-4">
-              {[
-                { name: 'John D.', profit: 5000, avatar: '1' },
-                { name: 'Sarah M.', profit: 4200, avatar: '2' },
-                { name: 'Mike R.', profit: 3800, avatar: '3' },
-              ].map((bettor, index) => (
-                <div key={index} className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <Avatar>
-                      <AvatarImage src={`https://api.dicebear.com/6.x/initials/svg?seed=${bettor.avatar}`} />
-                      <AvatarFallback>{bettor.name[0]}</AvatarFallback>
-                    </Avatar>
-                    <span>{bettor.name}</span>
-                  </div>
-                  <span className="text-green-400">+${bettor.profit}</span>
-                </div>
-              ))}
+              <Avatar className="h-12 w-12">
+                <AvatarImage src="https://i.postimg.cc/K8RMcv4L/IMG-0232.jpg" />
+                <AvatarFallback>AJ</AvatarFallback>
+              </Avatar>
             </div>
-          </CardContent>
-        </Card>
+          </div>
 
-        {/* Recent Bets */}
-        <Card className="bg-[#191919] border-none text-white h-64 w-64 flex flex-col items-center justify-center rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <CardHeader className="flex flex-col items-center justify-center space-y-0 pb-2">
-            <CardTitle className="text-xl font-semibold">Recent Bets</CardTitle>
-            <FaHistory className="h-6 w-6 text-gray-400 mt-2" />
-          </CardHeader>
-          <CardContent className="w-full">
-            <div className="space-y-4">
-              {[
-                { event: 'Lakers vs. Warriors', bet: 'Lakers -5.5', result: 'Win', amount: 100 },
-                { event: 'Man City vs. Chelsea', bet: 'Over 2.5 goals', result: 'Loss', amount: 50 },
-                { event: 'Nadal vs. Djokovic', bet: 'Nadal to win', result: 'Win', amount: 75 },
-              ].map((bet, index) => (
-                <div key={index} className="flex items-center justify-between">
-                  <div className="text-center">
-                    <div className="font-medium">{bet.event}</div>
-                    <div className="text-sm text-gray-400">{bet.bet}</div>
+          {/* Key Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <Card className="bg-[#1E1E1E] border border-blue-500/20 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardContent className="pt-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-400">Win Rate</p>
+                    <p className="text-3xl font-bold">67.8%</p>
+                    <p className="text-sm text-green-400">↑ 2.1% this week</p>
                   </div>
-                  <div className={`text-sm ${bet.result === 'Win' ? 'text-green-400' : 'text-red-400'}`}>
-                    {bet.result === 'Win' ? `+$${bet.amount}` : `-$${bet.amount}`}
+                  <div className="p-3 bg-blue-500/10 rounded-lg">
+                    <FaPercent className="h-6 w-6 text-blue-400" />
                   </div>
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
 
-        {/* Friends Activity */}
-        <Card className="bg-[#191919] border-none text-white h-64 w-64 flex flex-col items-center justify-center rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <CardHeader className="flex flex-col items-center justify-center space-y-0 pb-2">
-            <CardTitle className="text-xl font-semibold">Friends Activity</CardTitle>
-            <FaUserFriends className="h-6 w-6 text-purple-400 mt-2" />
-          </CardHeader>
-          <CardContent className="text-center w-full">
-            <div className="space-y-4">
-              {[
-                { name: 'Alice', action: 'placed a bet on NFL' },
-                { name: 'Bob', action: 'won $500 on NBA' },
-                { name: 'Charlie', action: 'joined a new league' },
-              ].map((activity, index) => (
-                <div key={index} className="text-sm">
-                  <span className="font-medium">{activity.name}</span> {activity.action}
+            <Card className="bg-[#1E1E1E] border border-green-500/20 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardContent className="pt-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-400">Monthly Profit</p>
+                    <p className="text-3xl font-bold">$3,249</p>
+                    <p className="text-sm text-green-400">↑ 15.3% vs last month</p>
+                  </div>
+                  <div className="p-3 bg-green-500/10 rounded-lg">
+                    <FaDollarSign className="h-6 w-6 text-green-400" />
+                  </div>
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
 
-        {/* Achievements */}
-        <Card className="bg-[#191919] border-none text-white h-64 w-64 flex flex-col items-center justify-center rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <CardHeader className="flex flex-col items-center justify-center space-y-0 pb-2">
-            <CardTitle className="text-xl font-semibold">Achievements</CardTitle>
-            <FaMedal className="h-6 w-6 text-amber-400 mt-2" />
-          </CardHeader>
-          <CardContent className="text-center w-full">
-            <div className="space-y-4">
-              {[
-                { name: 'Hot Streak', description: '5 wins in a row' },
-                { name: 'Big Winner', description: 'Won over $1000 in a single bet' },
-                { name: 'Diverse Bettor', description: 'Bet on 5 different sports' },
-              ].map((achievement, index) => (
-                <div key={index} className="text-sm">
-                  <div className="font-medium">{achievement.name}</div>
-                  <div className="text-gray-400">{achievement.description}</div>
+            <Card className="bg-[#1E1E1E] border border-orange-500/20 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardContent className="pt-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-400">Active Streak</p>
+                    <p className="text-3xl font-bold">7 Wins</p>
+                    <p className="text-sm text-orange-400">Personal Best!</p>
+                  </div>
+                  <div className="p-3 bg-orange-500/10 rounded-lg">
+                    <FaFire className="h-6 w-6 text-orange-400" />
+                  </div>
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-[#1E1E1E] border border-purple-500/20 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <CardContent className="pt-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-400">ROI</p>
+                    <p className="text-3xl font-bold">23.4%</p>
+                    <p className="text-sm text-purple-400">Last 30 days</p>
+                  </div>
+                  <div className="p-3 bg-purple-500/10 rounded-lg">
+                    <FaChartLine className="h-6 w-6 text-purple-400" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Main Content Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Recent Activity */}
+            <Card className="bg-[#191919] border-none text-white rounded-xl shadow-lg col-span-2 row-span-2">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle className="text-xl font-semibold">Recent Activity</CardTitle>
+                <button className="text-sm text-gray-400 hover:text-white transition-colors">View All</button>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {[
+                    { type: 'win', event: 'Lakers vs Warriors', amount: 350, odds: '+140', time: '2h ago' },
+                    { type: 'win', event: 'Man City vs Arsenal', amount: 200, odds: '-110', time: '5h ago' },
+                    { type: 'loss', event: 'Nadal vs Djokovic', amount: 100, odds: '+160', time: '8h ago' },
+                    { type: 'win', event: 'Chiefs vs Bills', amount: 500, odds: '-120', time: '1d ago' },
+                  ].map((bet, index) => (
+                    <div key={index} className="flex items-center justify-between p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
+                      <div className="flex items-center gap-3">
+                        <div className={`w-2 h-2 rounded-full ${bet.type === 'win' ? 'bg-green-400' : 'bg-red-400'}`} />
+                        <div>
+                          <p className="font-medium">{bet.event}</p>
+                          <p className="text-sm text-gray-400">{bet.odds} • {bet.time}</p>
+                        </div>
+                      </div>
+                      <p className={`font-medium ${bet.type === 'win' ? 'text-green-400' : 'text-red-400'}`}>
+                        {bet.type === 'win' ? '+' : '-'}${bet.amount}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Top Performers */}
+            <Card className="bg-[#191919] border-none text-white rounded-xl shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-xl font-semibold">Top Performers</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {[
+                    { name: 'Sarah Chen', profit: 12420, winRate: 72, avatar: 'Sarah' },
+                    { name: 'Mike Ross', profit: 8350, winRate: 68, avatar: 'Mike' },
+                    { name: 'Alex Kim', profit: 6240, winRate: 65, avatar: 'Alex' },
+                  ].map((user, index) => (
+                    <div key={index} className="flex items-center gap-4 p-3 rounded-lg bg-white/5">
+                      <Avatar>
+                        <AvatarImage src={`https://api.dicebear.com/6.x/avataaars/svg?seed=${user.avatar}`} />
+                        <AvatarFallback>{user.name[0]}</AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1">
+                        <p className="font-medium">{user.name}</p>
+                        <div className="flex items-center gap-2 text-sm text-gray-400">
+                          <span>{user.winRate}% WR</span>
+                          <span>•</span>
+                          <span className="text-green-400">+${user.profit}</span>
+                        </div>
+                      </div>
+                      <div className="text-2xl font-bold">#{index + 1}</div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Upcoming Bets */}
+            <Card className="bg-[#191919] border-none text-white rounded-xl shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-xl font-semibold">Upcoming Bets</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {[
+                    { event: 'PSG vs Real Madrid', time: 'Today, 20:45', odds: '+130', amount: 200 },
+                    { event: 'Celtics vs Nets', time: 'Tomorrow, 19:00', odds: '-110', amount: 150 },
+                    { event: 'UFC 288: Main Event', time: 'Sat, 22:00', odds: '+145', amount: 300 },
+                  ].map((bet, index) => (
+                    <div key={index} className="p-3 rounded-lg bg-white/5">
+                      <div className="flex justify-between items-start mb-2">
+                        <p className="font-medium">{bet.event}</p>
+                        <span className="text-blue-400">{bet.odds}</span>
+                      </div>
+                      <div className="flex justify-between text-sm text-gray-400">
+                        <span>{bet.time}</span>
+                        <span>${bet.amount}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </Card>
+    </PageContainer>
   );
 };
 
