@@ -219,7 +219,7 @@ const Survey = () => {
 
               <div>
                 <label htmlFor="feedback" className="block text-lg font-semibold mb-3 text-white">
-                  What do you like and don't like about the website?
+                  What do you like and not like about the website?
                 </label>
                 <Input
                   type="text"
