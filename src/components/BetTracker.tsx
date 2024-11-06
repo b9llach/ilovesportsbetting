@@ -11,11 +11,11 @@ import { PageContainer } from "@/components/layout/PageContainer";
 
 // Fake data for bets
 const initialBets = [
-  { date: new Date(2024, 2, 1), profit: 50 },
-  { date: new Date(2024, 2, 3), profit: -20 },
-  { date: new Date(2024, 2, 5), profit: 30 },
-  { date: new Date(2024, 2, 10), profit: -15 },
-  { date: new Date(2024, 2, 15), profit: 100 },
+  { date: new Date(2024, 11, 1), profit: 50 },
+  { date: new Date(2024, 11, 3), profit: -20 },
+  { date: new Date(2024, 11, 5), profit: 30 },
+  { date: new Date(2024, 11, 10), profit: -15 },
+  { date: new Date(2024, 11, 15), profit: 100 },
 ];
 
 const BetTracker = () => {
