@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
       { icon: FaLayerGroup, label: 'Parlay Builder', href: '/parlay-builder' },
       { icon: FaClipboardList, label: 'Bet Tracker', href: '/bet-tracker' },
       { icon: FaCalculator, label: 'Calculators', href: '/calculators' },
-      { icon: FaBell, label: 'Notices', href: '/notices' },
+      { icon: FaBell, label: 'Survey', href: '/survey' },
     ];
 
   // Hide navbar on the home page
