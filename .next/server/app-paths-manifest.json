@@ -1,9 +1,7 @@
 {
-  "/dashboard/page": "app/dashboard/page.js",
-  "/positive-ev/page": "app/positive-ev/page.js",
-  "/parlay-builder/page": "app/parlay-builder/page.js",
-  "/bet-tracker/page": "app/bet-tracker/page.js",
-  "/calculators/page": "app/calculators/page.js",
   "/page": "app/page.js",
-  "/arbitrage-bets/page": "app/arbitrage-bets/page.js"
+  "/dashboard/page": "app/dashboard/page.js",
+  "/arbitrage-bets/page": "app/arbitrage-bets/page.js",
+  "/positive-ev/page": "app/positive-ev/page.js",
+  "/parlay-builder/page": "app/parlay-builder/page.js"
 }

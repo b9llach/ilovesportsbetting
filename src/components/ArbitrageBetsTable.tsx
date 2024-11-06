@@ -125,7 +125,7 @@ const ArbitrageBetsPanel = () => {
                 </Badge>
               ))}
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-[400px] overflow-y-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-[800px] overflow-y-auto">
               {bets.length > 0 ? (
                 bets.map((bet, index) => (
                   <Card key={index} className="bg-[#2D2D2D] border-none text-white hover:bg-[#3D3D3D] transition-colors duration-200">
